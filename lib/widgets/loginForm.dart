@@ -2,10 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:roxio/screens/login_page.dart';
 
-class SignupForm extends StatelessWidget {
-  SignupForm({super.key});
+class LoginForm extends StatelessWidget {
+  LoginForm({super.key});
 
   GlobalKey<FormState> _formKey = GlobalKey();
   @override
@@ -15,20 +14,13 @@ class SignupForm extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          TextField(
-            decoration: InputDecoration(
-                labelText: "Nom d' Utilisateur",
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30))),
-          ),
-          SizedBox(height: 20),
           IntlPhoneField(
             decoration: InputDecoration(
                 labelText: "Numéro de Téléphone",
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30))),
           ),
-          SizedBox(height: 9),
+          SizedBox(height: 5),
           InkWell(
             onTap: () {},
             child: Container(
@@ -40,7 +32,7 @@ class SignupForm extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 15),
               child: Center(
                 child: Text(
-                  "M'inscrire",
+                  "C'est Parti",
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w200,
@@ -49,16 +41,13 @@ class SignupForm extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 18),
           InkWell(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginPage()),
-              );
+              Navigator.pop(context);
             },
             child: Text(
-              "J'ai déjà un compte !",
+              "Je n'ai pas encore de compte !",
               style: TextStyle(color: Color(0xFF101523), fontSize: 18),
             ),
           ),

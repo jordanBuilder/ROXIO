@@ -1,21 +1,19 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import "package:flutter/material.dart";
-import "package:flutter_native_splash/flutter_native_splash.dart";
-import "package:roxio/widgets/signupForm.dart";
+import "package:roxio/widgets/loginForm.dart";
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    FlutterNativeSplash.remove();
   }
 
   @override
@@ -44,7 +42,6 @@ class CarFloatingPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 20),
                     Text(
                       "Welcome To ",
                       style: TextStyle(
@@ -61,8 +58,8 @@ class CarFloatingPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 15),
-                SignupForm()
+                SizedBox(height: 20),
+                LoginForm()
               ],
             ),
           ),
@@ -84,8 +81,8 @@ class CarFloatingPage extends StatelessWidget {
           left: (MediaQuery.of(context).size.width - 250) / 2,
           child: Image.asset(
             'assets/images/greenCarTopView.png',
-            width: 249,
-            height: 249,
+            width: 250,
+            height: 250,
           ),
         )
       ],
