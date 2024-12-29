@@ -100,11 +100,11 @@ class _AuthPageState extends State<AuthPage> {
 
 class OtpForm extends StatelessWidget {
   const OtpForm({super.key});
-
+//franchement etikonam quoi je reessayerai après je vais commit comme ça
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 46.0, right: 46),
+      padding: const EdgeInsets.only(left: 46.0, right: 46.0),
       child: Form(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
