@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'dart:async';
-
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:pinput/pinput.dart';
+import 'package:flutter_numeric_keyboard/flutter_numeric_keyboard.dart';
+import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -13,22 +11,6 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-
-  final _pinPutController = TextEditingController();
-
-  final defaultPinTheme = PinTheme(
-      width: 56,
-      height: 56,
-      textStyle: const TextStyle(
-        fontSize: 22,
-        color: Color.fromRGBO(30, 60, 87, 1),
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(19),
-        border: Border.all(color: Colors.black),
-      ),
-    );
-
   @override
   void initState() {
     super.initState();
@@ -37,8 +19,9 @@ class _AuthPageState extends State<AuthPage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: const SingleChildScrollView(
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -86,10 +69,10 @@ class _AuthPageState extends State<AuthPage> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 15)),
                   ])),
-                  SizedBox(
-                    height: 25,
-                  ),
-                OtpForm()
+              SizedBox(
+                height: 25,
+              ),
+              OtpForm()
             ],
           ),
         ),
@@ -98,80 +81,89 @@ class _AuthPageState extends State<AuthPage> {
   }
 }
 
-class OtpForm extends StatelessWidget {
+class OtpForm extends StatefulWidget {
   const OtpForm({super.key});
-//franchement etikonam quoi je reessayerai après je vais commit comme ça
+
+  @override
+  State<OtpForm> createState() => _OtpFormState();
+}
+
+class _OtpFormState extends State<OtpForm> {
+  final codeFieldOne = TextEditingController();
+
+  final codeFieldTwo = TextEditingController();
+
+  final codeFieldThree = TextEditingController();
+
+  final codeFieldFour = TextEditingController();
+
+  String otpCode = '';
+  // Variable pour stocker le code OTP
+  void clearOtpFields() {
+    setState(() {
+      otpCode = '';
+    });
+    FocusScope.of(context).unfocus(); // Retire le focus
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 46.0, right: 46.0),
-      child: Form(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(children: [
+        Form(
+            child: Row(
           children: [
-            SizedBox(height: 68,
-            width: 64,
-            child: TextField(
-               decoration: InputDecoration(
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),),
-              style: Theme.of(context).textTheme.titleLarge,
-              keyboardType: TextInputType.number,
-              textAlign: TextAlign.center,
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(1),
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-            ),),
-            SizedBox(height: 68,
-            width: 64,
-            child: TextField(
-               decoration: InputDecoration(
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),),
-              style: Theme.of(context).textTheme.titleLarge,
-              keyboardType: TextInputType.number,
-              textAlign: TextAlign.center,
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(1),
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-            ),),
-            SizedBox(height: 68,
-            width: 64,
-            child: TextField(
-               decoration: InputDecoration(
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),),
-              style: Theme.of(context).textTheme.titleLarge,
-              keyboardType: TextInputType.number,
-              textAlign: TextAlign.center,
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(1),
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-            ),),
-            SizedBox(height: 68,
-            width: 64,
-            child: TextField(
-               decoration: InputDecoration(
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),),
-              style: Theme.of(context).textTheme.titleLarge,
-              keyboardType: TextInputType.number,
-              textAlign: TextAlign.center,
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(1),
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-            ),),
+            Expanded(
+              child: OtpTextField(
+                textStyle: const TextStyle(
+                  fontSize: 25,
+                ),
+                fieldWidth: 60,
+                borderRadius: BorderRadius.circular(35),
+                numberOfFields: 4,
+                fieldHeight: 80,
+                borderColor: const Color(0xFF512DA8),
+                //set to true to show as box or false to show as dash
+                showFieldAsBox: true,
+                //runs when a code is typed in
+                onCodeChanged: (String code) {
+                  otpCode = code;
+                  print("Code changé : $code");
+                },
+                //runs when every textfield is filled
+                onSubmit: (String verificationCode) {
+                  setState(() {
+                    otpCode = verificationCode;
+                  });
+                  print("Code complet : $verificationCode");
+                },
+                // end onSubmit
+              ),
+            ),
           ],
-        ),
-      ),
+        )),
+        // FlutterNumericKeyboard(
+        //   width: 400,
+        //   height: 300,
+        //   showDivider: false,
+        //   showResult: false,
+        //   resultTextStyle: const TextStyle(
+        //       color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+        //   resultFunction: (value) {
+        //     codeFieldOne.text = value;
+        //   },
+        //   obscureResult: false,
+        //   rightIconBack: const Icon(
+        //     Icons.backspace,
+        //     color: Colors.blueGrey,
+        //   ),
+        //   showRightIcon: true,
+        //   digitStyle: const TextStyle(
+        //       color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),
+        //   backgroundColor: Colors.white,
+        // ),
+      ]),
     );
   }
 }
