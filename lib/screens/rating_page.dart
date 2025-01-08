@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
+
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class RatingPage extends StatefulWidget {
@@ -13,7 +13,6 @@ class _RatingPageState extends State<RatingPage> {
   @override
   void initState() {
     super.initState();
-    FlutterNativeSplash.remove();
   }
 
   @override

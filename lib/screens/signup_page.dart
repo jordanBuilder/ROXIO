@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import "package:flutter/material.dart";
-import "package:flutter_native_splash/flutter_native_splash.dart";
 import "package:roxio/widgets/signupForm.dart";
 
 class SignUpPage extends StatefulWidget {
@@ -15,8 +14,7 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   void initState() {
     super.initState();
-    FlutterNativeSplash.remove();
-  }
+   }
 
   @override
   Widget build(BuildContext context) {

@@ -1,14 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:roxio/screens/auth_page.dart';
+import 'package:roxio/screens/destination_page.dart';
 import 'package:roxio/screens/rating_page.dart';
 import 'package:roxio/screens/signup_page.dart';
+import 'package:roxio/screens/splash_screen.dart';
 
 void main() {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
 }
 
@@ -24,7 +23,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: AuthPage(),
+      home : SplashScreen(),
     );
   }
 }

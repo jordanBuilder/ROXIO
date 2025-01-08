@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
+
 import 'package:flutter_numeric_keyboard/flutter_numeric_keyboard.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
@@ -14,7 +14,7 @@ class _AuthPageState extends State<AuthPage> {
   @override
   void initState() {
     super.initState();
-    FlutterNativeSplash.remove();
+
   }
 
   @override
